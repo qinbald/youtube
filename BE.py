@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import yt_dlp
 import os
 
-folder_tujuan = r'D:\BELAJAR\downloadanlagu'
+folder_tujuan = 'downloads'
 if not os.path.exists(folder_tujuan):
     os.makedirs(folder_tujuan)
 
