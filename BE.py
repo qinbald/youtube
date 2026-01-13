@@ -29,8 +29,6 @@ def download():
         }],
         'outtmpl' : os.path.join(folder_tujuan, '%(title)s.%(ext)s'),
         'nocheckcertificate': True,
-        'quiet': True,
-        'no_warnings': True,
     }
     
     try:
