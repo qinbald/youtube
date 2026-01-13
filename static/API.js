@@ -1,13 +1,14 @@
 async function KirimData() {
     const urlInput = document.getElementById("url").value;
     const statusP  = document.getElementById('status');
+    const lirikBox = document.getElementById('lirik-box');
     
     if(!urlInput) {
         alert("masukkan link yang benar dulu bos!");
         return;
     }
 
-    statusP.innerText = "Mendownload...";
+    statusP.innerText = "Mendownload & Mencari Lirik...";
 
     try{
         const response = await fetch('/download', {
@@ -18,9 +19,15 @@ async function KirimData() {
             body: 'url=' + encodeURIComponent(urlInput)
         });
 
-        const hasil = await response.text();
-        statusP.innerText = hasil;
+        const hasil = await response.json();
+        
+        if(hasil.error) {
+            statusP.innerText = "Error: " + hasil.error;
+        } else {
+            statusP.innerText = "Selesai: " + hasil.judul;
+            lirikBox.innerText = hasil.lirik;
+        }
     } catch(error){
-        statusP.innerText = 'terjadi kesalahan...';
+        statusP.innerText = 'Terjadi kesalahan sistem...';
     }
 }
